@@ -121,6 +121,10 @@
                                 <span class="sub-item">Transaction</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="?page=laporan-penjualan">
+                                <span class="sub-item">Laporan Penjualan</span>
+                            </a>
                     </ul>
                 </div>
             </li>

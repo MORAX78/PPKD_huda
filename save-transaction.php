@@ -2,7 +2,7 @@
 header("Content-Type: application/json");
 include "config/koneksi.php";
 
-$data = json_decode(file_get_contents("php://input", true));
+$data = json_decode(file_get_contents("php://input"));
 
 
 // echo "Data berhasil tersimpan"; //.text()
@@ -24,6 +24,7 @@ $order_change = $data->order_change;
 $order_pay = $data->order_pay;
 $cart = $data->cart;
 
+mysqli_begin_transaction($koneksi);
 try {
     $insertOrder = mysqli_query($koneksi, "INSERT INTO orders (order_code, order_date, customer_name, order_amount, order_change, order_status) VALUES ('$order_code','$order_date','$customer_name','$order_amount','$order_change',1)");
     if (!$insertOrder) {
@@ -43,16 +44,16 @@ try {
         }
         $updateStock = mysqli_query($koneksi, "UPDATE products SET qty = qty - $product_qty WHERE id = '$product_id'");
     }
-
+    mysqli_commit($koneksi);
     echo json_encode([
         "status" => true,
         "message" => "Transaksi berhasil",
         "order_id" => $data->order_code,
     ]);
 } catch (\Throwable $th) {
+    mysqli_rollback($koneksi);
     echo json_encode([
         "status" => false,
         "message" => $th->getMessage(),
     ]);
 }
-print_r($data);

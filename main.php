@@ -50,6 +50,7 @@ checkLogin();
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link rel="stylesheet" href="assets/template/assets/css/demo.css" />
     <script src="transaction.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.min.css" />
 </head>
 
 <body>
@@ -167,7 +168,10 @@ checkLogin();
 
     <!-- Kaiadmin JS -->
     <script src="assets/template/assets/js/kaiadmin.min.js"></script>
-
+    <script src="https://cdn.datatables.net/2.3.7/js/dataTables.min.js"></script>
+    <script>
+        let table = new DataTable('#myTable');
+    </script>
 </body>
 
 </html>

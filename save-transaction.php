@@ -26,7 +26,7 @@ $cart = $data->cart;
 
 mysqli_begin_transaction($koneksi);
 try {
-    $insertOrder = mysqli_query($koneksi, "INSERT INTO orders (order_code, order_date, customer_name, order_amount, order_change, order_status) VALUES ('$order_code','$order_date','$customer_name','$order_amount','$order_change',1)");
+    $insertOrder = mysqli_query($koneksi, "INSERT INTO orders (order_code, order_date, order_pay, customer_name, order_amount, order_change, order_status) VALUES ('$order_code','$order_date','$order_pay','$customer_name','$order_amount','$order_change',1)");
     if (!$insertOrder) {
         throw new Exception("Gagal melakukan insert order");
     }
